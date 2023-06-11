@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "prebuild": "cd src/plugins/<plugin name> && npm run build",
+    "start": "node dist/src/index.js"
+
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -15,6 +17,7 @@
     "express": "^4.18.2",
     "mongoose": "^7.2.3"
   },
+  
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
