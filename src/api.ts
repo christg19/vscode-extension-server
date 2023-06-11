@@ -32,9 +32,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/students', (req, res) => {
+  const { name, lineCount } = req.body;
   try {
-    const { name, lineCount } = req.body;
-
     const newUser = new userModel({
       name,
       lineCount,
@@ -45,6 +44,15 @@ app.post('/students', (req, res) => {
   }
 })
 
+app.patch('/studentsUpdate', async (req, res) => {
+  const { userId, lineCount } = req.body;
+  try {
+    const student = await userModel.findByIdAndUpdate({ userId, lineCount }, { new: true });
+    res.json(student);
+  } catch (err) {
+    res.status(500).json({ err: 'Error al actualizar el usuario' });
+  }
+})
 
 const api = express.Router();
 
