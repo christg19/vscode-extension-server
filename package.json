@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "prebuild": "cd src/plugins/<plugin name> && npm run build",
     "start": "node dist/src/index.js"
 
   },
