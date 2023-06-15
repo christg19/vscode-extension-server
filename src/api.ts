@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://christ1913:pinguino27@cluster0.x6ivvyj.mongodb.net/?retryWrites=true&w=majority', {
+    await mongoose.connect('mongodb+srv://christ1913:pinguino27@cluster0.gvxd2gm.mongodb.net/?retryWrites=true&w=majority', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -44,10 +44,11 @@ app.post('/students', (req, res) => {
   }
 })
 
-app.patch('/studentsUpdate', async (req, res) => {
-  const { userId, lineCount } = req.body;
+app.patch('/studentsUpdate/:userId', async (req, res) => {
+  const { userId } = req.params;
+  const { lineCount } = req.body;
   try {
-    const student = await userModel.findByIdAndUpdate({ userId, lineCount }, { new: true });
+    const student = await userModel.findByIdAndUpdate(userId, { lineCount }, { new: true });
     res.json(student);
   } catch (err) {
     res.status(500).json({ err: 'Error al actualizar el usuario' });
